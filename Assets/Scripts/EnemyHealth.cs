@@ -4,9 +4,11 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] private int maxHP = 5;
+    
+    [Tooltip("adds this value to future enemy HP max when an enemy dies")] [SerializeField] int difficultyRamp = 1;
 
-    [SerializeField] private int currentHP = 0;
-
+    private int currentHP = 0;
+    
     private Enemy enemy;
 
     private void Start()
@@ -30,6 +32,7 @@ public class EnemyHealth : MonoBehaviour
         if (currentHP <= 0)
         {
             gameObject.SetActive(false);
+            maxHP += difficultyRamp;
             enemy.RewardGold();
         }
     }
