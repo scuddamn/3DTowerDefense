@@ -16,13 +16,13 @@ public class Bank : MonoBehaviour
         get { return currentBalance; }
     }
 
-    private GameManager gm;
+    private GameManager gm; //removed
 
     private void Awake()
     {
-        gm = FindFirstObjectByType<GameManager>();
+        gm = FindFirstObjectByType<GameManager>(); //removed
         currentBalance = startingBalance;
-        gm.UpdateBankText($"${currentBalance}");
+        gm.UpdateBankText($"${currentBalance}"); //UpdateBankText();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
