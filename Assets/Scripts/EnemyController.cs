@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,15 +6,22 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     [Header("Path")]
-    [SerializeField] private List<Transform> path = new List<Transform>();
+    [SerializeField] private List<Waypoint> path = new List<Waypoint>();
 
     [Header("Movement Speed")]
     [SerializeField] [Range(1f, 5f)] private float speed = 1f;
-    
-    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+    private Enemy enemy;
+
+    private void Start()
     {
+        enemy = GetComponent<Enemy>();
+    }
+
+    void OnEnable()
+    {
+        FindPath();
+        ReturnToStart();
         StartCoroutine(FollowPath());
     }
 
@@ -25,7 +33,7 @@ public class EnemyController : MonoBehaviour
 
     IEnumerator FollowPath() //move enemy along selected path of tiles
     {
-        foreach (Transform waypoint in path)
+        foreach (Waypoint waypoint in path)
         {
             //print(waypoint.name);
             Vector3 startPos = transform.position;
@@ -41,6 +49,33 @@ public class EnemyController : MonoBehaviour
                 transform.position = Vector3.Lerp(startPos, endPos, travelPercent);
                 yield return new WaitForEndOfFrame();
             }
+        } FinishPath();
+    } 
+
+    void FindPath()
+    {
+        path.Clear();
+        GameObject parent = GameObject.FindGameObjectWithTag("Path");
+
+        foreach(Transform child in parent.transform)
+        {
+            Waypoint waypoint = child.GetComponent<Waypoint>();
+            if (waypoint != null)
+            {
+                path.Add(waypoint);
+            }
         }
     }
+
+    void ReturnToStart()
+    {
+        transform.position = path[0].transform.position;
+    }
+
+    void FinishPath()
+    {
+        enemy.PenalizeGold();
+        gameObject.SetActive(false);
+    }
+    
 }

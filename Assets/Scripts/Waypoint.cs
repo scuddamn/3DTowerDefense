@@ -6,14 +6,17 @@ public class Waypoint : MonoBehaviour
 {
     [SerializeField] private bool isPlaceable;
     [SerializeField] private List<GameObject> turrets;
-    [SerializeField] private GameObject turretPrefab;
+    [SerializeField] private Turret turretPrefab;
+
+    public bool IsPlaceable => isPlaceable;
+
     public void OnMouseDown()
     {
         if (isPlaceable)
         {
             print($"Waypoint clicked: {transform.name}");
-            Instantiate(turretPrefab, transform.position, Quaternion.identity);
-            isPlaceable = false;
+            bool isPlaced = turretPrefab.CreateTurret(turretPrefab, transform.position);
+            isPlaceable = !isPlaced;
         }
     }
 }
