@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
+
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI bankText;
@@ -16,5 +18,10 @@ public class GameManager : MonoBehaviour
     public void UpdateBankText(string text)
     {
         bankText.text = text; //bankText.text = $"${bank.CurrentBalance}"
+    }
+    
+    public void GameOver()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

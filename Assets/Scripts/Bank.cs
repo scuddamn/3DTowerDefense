@@ -51,14 +51,10 @@ public class Bank : MonoBehaviour
         if (currentBalance < 0)
         {
             Debug.Log("Game Over"); 
-            GameOver();
+            gm.GameOver();
         }
     }
-
-    void GameOver()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
+    
     
     // void UpdateBankText()
     // {

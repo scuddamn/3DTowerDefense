@@ -84,7 +84,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 5
-  currentHP: 0
+  difficultyRamp: 1
 --- !u!114 &8522471792277820148
 MonoBehaviour:
   m_ObjectHideFlags: 0

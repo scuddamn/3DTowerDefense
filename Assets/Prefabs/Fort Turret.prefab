@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -7246081090877673250}
   - component: {fileID: -1635338701443541636}
   - component: {fileID: 7620946722555655004}
+  - component: {fileID: 8729520647811042052}
   m_Layer: 0
   m_Name: Fort Turret
   m_TagString: Untagged
@@ -157,6 +158,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 8064864781430311922}
+  projectileParticles: {fileID: 2164846361611060472}
+  range: 25
+--- !u!114 &8729520647811042052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4675193037123235935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4545e2a762384e578dec2cbec3fc955, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turretCost: 75
 --- !u!1 &7155889198959591667
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,5 +357,10 @@ PrefabInstance:
 --- !u!4 &864535786862244319 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 508286029339097330, guid: 6911fc38bba904a7196d82365099e058, type: 3}
+  m_PrefabInstance: {fileID: 933012328184908077}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &2164846361611060472 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1367314792139345365, guid: 6911fc38bba904a7196d82365099e058, type: 3}
   m_PrefabInstance: {fileID: 933012328184908077}
   m_PrefabAsset: {fileID: 0}
