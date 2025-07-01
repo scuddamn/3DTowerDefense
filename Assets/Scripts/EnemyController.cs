@@ -70,16 +70,9 @@ public class EnemyController : MonoBehaviour
 
     void FinishPath()
     {
-        if (gameObject.CompareTag("Ally"))
-        {
-            enemy.RewardGold();
-            gameObject.SetActive(false);
-        }
-        else
-        {
             enemy.PenalizeGold();
             gameObject.SetActive(false);
-        }
+        
         
     }
     

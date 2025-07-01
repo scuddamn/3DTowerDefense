@@ -29,16 +29,11 @@ public class EnemyHealth : MonoBehaviour
     void ProcessHit()
     {
         currentHP--;
-        if (currentHP <= 0 && !gameObject.CompareTag("Ally"))
+        if (currentHP <= 0)
         {
             gameObject.SetActive(false);
             maxHP += difficultyRamp;
             enemy.RewardGold();
-        }
-        else
-        {
-            gameObject.SetActive(false);
-            enemy.PenalizeGold();
         }
     }
 }
