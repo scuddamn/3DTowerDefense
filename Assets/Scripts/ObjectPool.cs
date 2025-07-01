@@ -1,10 +1,15 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
+
 
 public class ObjectPool : MonoBehaviour
 {
-    [SerializeField] private GameObject enemyPrefab;
+    [SerializeField] private List<GameObject> enemies;
+    
+    private GameObject enemyPrefab;
 
     [SerializeField][Range(0.1f, 20f)] private float spawnRate = 1f;
 
@@ -46,6 +51,7 @@ public class ObjectPool : MonoBehaviour
 
         for (int i = 0; i < enemyPool.Length; i++)
         {
+            RandomizePrefab();
             enemyPool[i] = Instantiate(enemyPrefab, transform);
             enemyPool[i].SetActive(false);
         }
@@ -61,5 +67,10 @@ public class ObjectPool : MonoBehaviour
                 return;
             }
         }
+    }
+
+    void RandomizePrefab()
+    {
+        enemyPrefab = enemies[Random.Range(0, enemies.Count)];
     }
 }

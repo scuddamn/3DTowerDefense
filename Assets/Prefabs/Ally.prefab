@@ -10,7 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 344852819103028160, guid: ea5869f9a51e44a65b3faccb2fbfb18c, type: 3}
       propertyPath: m_Name
-      value: Enemy Variant
+      value: Ally
+      objectReference: {fileID: 0}
+    - target: {fileID: 344852819103028160, guid: ea5869f9a51e44a65b3faccb2fbfb18c, type: 3}
+      propertyPath: m_TagString
+      value: Ally
+      objectReference: {fileID: 0}
+    - target: {fileID: 2907170804272807209, guid: ea5869f9a51e44a65b3faccb2fbfb18c, type: 3}
+      propertyPath: speed
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3407584650138387037, guid: ea5869f9a51e44a65b3faccb2fbfb18c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -51,6 +59,14 @@ PrefabInstance:
     - target: {fileID: 3407584650138387037, guid: ea5869f9a51e44a65b3faccb2fbfb18c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8522471792277820148, guid: ea5869f9a51e44a65b3faccb2fbfb18c, type: 3}
+      propertyPath: goldReward
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8522471792277820148, guid: ea5869f9a51e44a65b3faccb2fbfb18c, type: 3}
+      propertyPath: goldPenalty
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

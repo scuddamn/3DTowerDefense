@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class TargetLock : MonoBehaviour
@@ -60,4 +61,5 @@ public class TargetLock : MonoBehaviour
 
         emissionModule.enabled = isActive;
     }
+    
 }

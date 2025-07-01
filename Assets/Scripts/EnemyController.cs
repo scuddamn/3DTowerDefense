@@ -5,17 +5,20 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    [Header("Path")]
-    [SerializeField] private List<Waypoint> path = new List<Waypoint>();
+    public List<Node> path = new List<Node>();
 
     [Header("Movement Speed")]
     [SerializeField] [Range(1f, 5f)] private float speed = 1f;
 
     private Enemy enemy;
+    private GridManager gridManager;
+    private Pathfinder pathfinder;
 
-    private void Start()
+    private void Awake()
     {
         enemy = GetComponent<Enemy>();
+        gridManager = FindFirstObjectByType<GridManager>();
+        pathfinder = FindFirstObjectByType<Pathfinder>();
     }
 
     void OnEnable()
@@ -33,49 +36,51 @@ public class EnemyController : MonoBehaviour
 
     IEnumerator FollowPath() //move enemy along selected path of tiles
     {
-        foreach (Waypoint waypoint in path)
+        for(int i = 0; i < path.Count; i++)
         {
             //print(waypoint.name);
             Vector3 startPos = transform.position;
-            Vector3 endPos = waypoint.transform.position;
+            Vector3 nextPos = gridManager.GetPositionFromCoords(path[i].coordinates);
 
             float travelPercent = 0f;
             
-            transform.LookAt(endPos);
+            transform.LookAt(nextPos);
 
             while (travelPercent < 1f)
             {
                 travelPercent += Time.deltaTime * speed;
-                transform.position = Vector3.Lerp(startPos, endPos, travelPercent);
+                transform.position = Vector3.Lerp(startPos, nextPos, travelPercent);
                 yield return new WaitForEndOfFrame();
             }
-        } FinishPath();
+        }
+
+        FinishPath();
     } 
 
     void FindPath()
     {
         path.Clear();
-        GameObject parent = GameObject.FindGameObjectWithTag("Path");
-
-        foreach(Transform child in parent.transform)
-        {
-            Waypoint waypoint = child.GetComponent<Waypoint>();
-            if (waypoint != null)
-            {
-                path.Add(waypoint);
-            }
-        }
+        path = pathfinder.GetNewPath();
     }
 
     void ReturnToStart()
     {
-        transform.position = path[0].transform.position;
+        transform.position = gridManager.GetPositionFromCoords(pathfinder.StartCoordinates);
     }
 
     void FinishPath()
     {
-        enemy.PenalizeGold();
-        gameObject.SetActive(false);
+        if (gameObject.CompareTag("Ally"))
+        {
+            enemy.RewardGold();
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            enemy.PenalizeGold();
+            gameObject.SetActive(false);
+        }
+        
     }
     
 }
